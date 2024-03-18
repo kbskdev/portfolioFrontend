@@ -1,7 +1,7 @@
 window.addEventListener("load", init);
 function init(){
 
-    const pinBoardArticle = document.getElementById("pinBoardArticle")
+    const pinBoardArticle = document.getElementById("pb_page")
     const mainName = document.getElementById("name")
 
     const myEngine = Matter.Engine.create()
@@ -38,11 +38,11 @@ function init(){
             //
             this.elem.addEventListener("mousedown", event=>{
                 this.elem.style.backgroundColor = "#491385"
-                console.log(this.elem.style)
+
                 })
             this.elem.addEventListener("mouseup", event=>{
                 if(!this.moved)constraints.forEach( constr =>{constr.shorten()})
-                console.log(this.movement)
+
                 this.elem.style.backgroundColor = "#ffffff"
                 this.movement = 0;
                 this.moved = false
@@ -51,7 +51,7 @@ function init(){
                 if(event.which === 1){
 
                     this.movement++;
-                    console.log(this.movement)
+
                     if(this.movement>40)
                     {
                         this.moved = true;

@@ -65,6 +65,17 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+#pb_page{
+    width: 70vw;
+    height: 70vh;
+    position: absolute;
+    visibility: hidden;
+    left: -70vw;
+    transition-duration: 2s;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid black;
+    box-sizing: border-box;
+}
 #pinboard{
     position: absolute;
     top: calc(40vh);
@@ -97,16 +108,18 @@ body{
     transition-duration: 1s;
 
  }
-#pinBoardArticle{
-    width: 70vw;
-    height: 70vh;
-    position: absolute;
-    visibility: hidden;
-    left: -70vw;
-    transition-duration: 2s;
-    background-color: black;
-}
 
+#antyName{
+    position: absolute;
+    bottom: 15vh;
+    left: 10vw;
+    font-size: 150px;
+    z-index: 3;
+    color: white;
+    font-family: fantasy;
+    transition-duration: 1s;
+
+}
 
 
 

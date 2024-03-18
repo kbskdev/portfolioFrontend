@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "portfolio",
   "main": "cradle.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "me",
   "license": "MIT",
   "dependencies": {
-    "matter-js": "^0.15.0"
+    "matter-js": "^0.15.0",
+    "pixi.js": "6.3.0"
   }
 }
