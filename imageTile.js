@@ -1,4 +1,4 @@
-import * as PIXI from "./node_modules/pixi.js/dist/browser/pixi.min.mjs"
+//import * as PIXI from "./node_modules/pixi.js/dist/browser/pixi.mjs"
 
 export class ImageTile{
     reader = new FileReader()
