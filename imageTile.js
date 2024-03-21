@@ -12,19 +12,13 @@ export class ImageTile{
             this.imageData = imageData
             this.imageData.position = imageData.position
             this.imageData.imageBlob = response
-            console.log(this.imageData._id)
             this.reader.readAsDataURL(this.imageData.imageBlob)
-
         })
         this.reader.addEventListener("loadend", () => {
 
-
-            //console.log(texture)
             this.imageSprite = new PIXI.Sprite(new PIXI.Texture((new PIXI.BaseTexture( this.reader.result))))
 
             this.imageData.imageString = this.reader.result
-
-            //this.imageData.currentSize = {height: this.imageSprite.height, width: this.imageSprite.width}
 
             this.container.sortableChildren = true
 

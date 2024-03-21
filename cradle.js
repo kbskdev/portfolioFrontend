@@ -1,10 +1,25 @@
 window.addEventListener("load", init);
 function init(){
+    let short = false
 
-    const pinBoardArticle = document.getElementById("pb_page")
+    const loadDemo = new Event("loadDemo",{page:"demo"})
+
+    const container = document.getElementById("container")
+
+    const pinBoardHeader = document.getElementById("pb_header")
+    const pinBoardCanvas = document.getElementById("pb_canvas")
+    const pinBoardArticle = document.getElementById("pb_article")
+
     const mainName = document.getElementById("name")
+    const intro = document.getElementById("initialAnimation")
 
-    const myEngine = Matter.Engine.create()
+    setTimeout(()=>{
+        intro.remove()
+    },3000)
+
+
+    const myEngine = Matter.Engine.create({positionIterations:1,velocityIterations:1,constraintIterations:1})
+    console.log(myEngine)
     const myRunner = Matter.Runner.create()
     //addingMouse
     {const myMouse = Matter.Mouse.create(document.body)
@@ -31,38 +46,35 @@ function init(){
             this.name = selector
             this.radius = radius
             this.elem = document.querySelector(`${selector}`)
-            if(first){this.body = Matter.Bodies.circle(window.innerWidth/2 + 2*position*75,window.innerHeight *0.5, radius, {restitution:1,frictionAir:0.0052})}
-            else{this.body = Matter.Bodies.circle(window.innerWidth/2 + position*75,window.innerHeight *0.5, radius, {restitution:1,frictionAir:0.005})}
-
-
+            this.elem.style.width = `${2*this.radius}px`
+            this.elem.style.height = `${2*this.radius}px`
+            if(first){this.body = Matter.Bodies.circle(window.innerWidth/2 + 2*position*75,-13*radius, radius, {restitution:1,frictionAir:0.015})}
+            else{this.body = Matter.Bodies.circle(window.innerWidth/2 + position*75,-13*radius, radius, {restitution:1,frictionAir:0.015})}
             //
-            this.elem.addEventListener("mousedown", event=>{
-                this.elem.style.backgroundColor = "#491385"
+            this.elem.addEventListener("pointerdown", event=>{
 
-                })
-            this.elem.addEventListener("mouseup", event=>{
-                if(!this.moved)constraints.forEach( constr =>{constr.shorten()})
 
-                this.elem.style.backgroundColor = "#ffffff"
+                }, )
+            this.elem.addEventListener("pointerup", event=>{
+                if(!this.moved && !short)shorten()
+                else if(!this.moved && short)lengthen()
+                this.elem.style.transform = "rotate(0deg)"
                 this.movement = 0;
                 this.moved = false
-            })
-            this.elem.addEventListener("mousemove", event=>{
-                if(event.which === 1){
-
+            }, )
+            this.elem.addEventListener("pointermove", event=>{
+                if(event.buttons === 1){
                     this.movement++;
 
-                    if(this.movement>40)
-                    {
+                    if(!this.moved){this.elem.style.transform = `rotate(${12 + this.movement}deg)`}
+                    if(this.movement>50) {
                         this.moved = true;
-                         this.elem.style.backgroundColor = "#ffffff"
+                        this.elem.style.transform = "rotate(12deg)"
                     }
                 }
+            }, )
 
-            })
-            //this.elem.addEventListener("click",event=>{constraints.forEach( constr =>{constr.shorten()})})
         }
-
         render(){
             const {x,y} = this.body.position;
             this.elem.style.top = `${y-this.radius}px`
@@ -70,45 +82,150 @@ function init(){
             //this.elem.style.transform = `rotate(${this.body.angle}rad)`;
         }
     }
+
+
     class Constraint {
         constructor(ball) {
             this.ball = ball
-            this.constr = Matter.Constraint.create({bodyA:ball.body,bodyB:ceiling,pointB:{x:window.innerWidth/2 + ball.position*ball.radius,y:0},stiffness:1,length:window.innerHeight*0.5})
+            this.constr = Matter.Constraint.create({
+                bodyA: ball.body,
+                bodyB: ceiling,
+                pointB: {x: window.innerWidth / 2 + ball.position * ball.radius, y: 0},
+                stiffness: 0.02,
+                length: window.innerHeight * 0.5,
+                render: {type:"line"}
+            })
         }
-        shorten(){
-
-                const shortening = setInterval(()=>{
-                    if(this.constr.length > window.innerHeight*0.15)this.constr.length-=2;}, 10,)
-                setTimeout(()=>{
-                    pinBoardArticle.style.visibility = "visible"
-                    pinBoardArticle.style.left = "15vw"
-                    Matter.Body.scale(this.ball.body,0.66,0.66)
-                    this.ball.elem.style.height = `100px`
-                    this.ball.elem.style.width = `100px`
-                    this.ball.elem.style.fontSize = "16px"
-                    mainName.style.right = "5vw"
-                    mainName.style.bottom = "5vh"
-                },500)
-            }
-        }
-
-
-    const balls = [new Ball(75,-3,"#pinboard",true),new Ball(75,-1,"#fakturownia"),new Ball(75,1,"#oferta"),new Ball(75,3,"#irlandia")]
-    let constraints = []
-    balls.forEach((ball,index) =>{
-        constraints.push(new Constraint(ball))
-        Matter.Composite.add(myEngine.world,[ball.body, constraints[index].constr])
-    })
-    function rerender() {
-        balls.forEach(ball=>{ball.render()})
-        Matter.Engine.update(myEngine);
-        requestAnimationFrame(rerender);
     }
-    rerender()
 
-    Matter.Composite.add(myEngine.world, [ceiling,leftWall,rightWall]);
+    function shorten() {
+
+        window.dispatchEvent(loadDemo)
+
+        constraints.forEach( constraint => {
+            const shortening = setInterval(()=>{
+                if(constraint.constr.length > window.innerHeight*0.15){
+                    constraint.constr.length-=2;
+                }else{ clearInterval(shortening) }
+                }, 10,)
+
+
+        setTimeout(() => {
+            pinBoardCanvas.style.visibility = "visible"
+            pinBoardCanvas.style.left = "8vw"
+
+            pinBoardHeader.style.visibility = "visible"
+            pinBoardHeader.style.left = pinBoardCanvas.style.left
+            pinBoardHeader.style.top = "17vh"
+
+            pinBoardArticle.style.visibility = "visible"
+            pinBoardArticle.style.opacity = 1
 
 
 
+            Matter.Body.scale(constraint.ball.body, 0.66, 0.66)
+            constraint.ball.radius = constraint.ball.radius*0.66
+            constraint.ball.elem.style.height = `${constraint.ball.radius*2}px`
+            constraint.ball.elem.style.width = `${constraint.ball.radius*2}px`
+            constraint.ball.elem.style.fontSize = "16px"
+
+
+        }, 1500)
+            mainName.style.right = "2vw"
+            mainName.style.bottom = "2vh"
+            short = true
+        })
+    }
+    function lengthen(){
+        //window.dispatchEvent(loadDemo)
+
+        constraints.forEach(constraint => {
+            const lengthening =setInterval(()=>{
+
+                if(constraint.constr.length < window.innerHeight*0.6){
+                    console.log(constraint.constr.length)
+                    constraint.constr.length += 2;
+                }else{ clearInterval(lengthening) }
+                }, 10,)
+
+            pinBoardHeader.style.visibility = "invisible"
+            pinBoardHeader.style.left = "-100vw"
+
+            pinBoardCanvas.style.visibility = "invisible"
+            pinBoardCanvas.style.left = "-100vw"
+
+            pinBoardArticle.style.visibility = "invisible"
+            pinBoardArticle.style.opacity = "0"
+
+        setTimeout(()=>{
+            Matter.Body.scale(constraint.ball.body,1.5,1.5)
+            constraint.ball.radius = constraint.ball.radius*1.5
+            constraint.ball.elem.style.height = `${constraint.ball.radius*2}px`
+            constraint.ball.elem.style.width = `${constraint.ball.radius*2}px`
+            //this.ball.elem.style.fontSize = "16px"
+
+        },1500)
+        mainName.style.right = "5vw"
+        mainName.style.bottom = "5vh"
+        short = false
+        })
+    }
+
+
+
+    const balls = [new Ball(85,-3,"#pinboard",true),new Ball(85,-1,"#fakturownia"),new Ball(85,1,"#oferta"),new Ball(85,3,"#irlandia")]
+    let constraints = []
+    balls.forEach((ball,index) => {
+
+        console.log(ball.body.position.y)
+        setTimeout(() => {
+
+            constraints.push(new Constraint(ball))
+            Matter.Composite.add(myEngine.world, [ball.body])
+
+
+        }, 1000)
+    })
+    balls.forEach((ball,index) => {
+    const fallingCatch = setInterval(()=>{
+        if(ball.body.position.y > window.innerHeight*0.4){
+            Matter.Composite.add(myEngine.world, [constraints[index].constr])
+
+            clearInterval(fallingCatch)
+            const changeStiffness = setTimeout( () => {
+                console.log("???????????????????????")
+                constraints.forEach( constraint => {constraint.constr.stiffness = 0.5})
+            },3000)
+        }
+    },100)})
+
+
+    function rerender() {
+        balls[0].render()
+        balls[1].render()
+        balls[2].render()
+        balls[3].render()
+        // Matter.Engine.update(myEngine);
+        // requestAnimationFrame(rerender);
+
+    }
+    // rerender()
+    setInterval(()=>{
+       rerender()
+    },1000/60)
+
+    Matter.Composite.add(myEngine.world, [leftWall,rightWall]);
+
+    const myRender = Matter.Render.create({
+        element:container,
+        engine:myEngine,
+        options:{
+            width:container.offsetWidth,
+            height:container.offsetHeight,
+            backgroundAlpha:0
+        }
+
+    })
+    Matter.Render.run(myRender)
     Matter.Runner.run(myRunner,myEngine)
 }

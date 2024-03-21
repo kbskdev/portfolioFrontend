@@ -1,9 +1,9 @@
 //import * as PIXI from "pixi.js"
 import {ImageTile} from "./imageTile.js";
 
- window.addEventListener("load", init);
+ window.addEventListener("loadDemo", init);
 
- const canvas = document.getElementById('pb_page')
+ const canvas = document.getElementById('pb_canvas')
 
 function init(){
 
@@ -12,18 +12,11 @@ function init(){
     }).then((data) => {
         const comp = data.data.composition[0];
 
-
         let images = []
         comp.images.forEach( image => {images.push(new ImageTile(image))})
 
-
-
-        images.forEach(image =>{ image.loadImage().then(()=>{
-            mainContainer.addChild(image.container)
-            console.log(image.imageSprite)})
+        images.forEach(image =>{ image.loadImage().then(()=>{mainContainer.addChild(image.container)})
         })
-
-
 
     }).catch(function(err) {
         console.log('Fetch Error :-S', err);
@@ -33,8 +26,8 @@ function init(){
 
     const mainContainer = new PIXI.Container()
     const app = new PIXI.Application({
-        width: canvas.offsetWidth,
-        height: canvas.offsetHeight,
+        width: canvas.offsetWidth-10,
+        height: canvas.offsetHeight-10,
         resolution: window.devicePixelRatio || 1,
         autoDensity: true,
         antialias: true,
@@ -43,24 +36,22 @@ function init(){
     canvas.appendChild(app.view);
     app.stage.addChild(mainContainer)
 
-    app.renderer.view.onpointerdown = (e) =>{
+    canvas.addEventListener('pointerdown' , (e) =>{
+
         pressedCanvas = {
             mouseY: e.clientY,
             mouseX: e.clientX,
             canvasX: e.clientX - mainContainer.x,
             canvasY: e.clientY - mainContainer.y
         }
+
         console.log(pressedCanvas)
-    }
+    })
 
     app.renderer.view.onpointermove = (e)=>{
         if(e.buttons === 1){
             mainContainer.x=e.clientX-pressedCanvas.canvasX
             mainContainer.y=e.clientY-pressedCanvas.canvasY
         }
-
     }
-
-
-
 }
