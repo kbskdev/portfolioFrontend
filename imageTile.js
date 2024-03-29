@@ -18,6 +18,7 @@ export class ImageTile{
 
             this.imageSprite = new PIXI.Sprite(new PIXI.Texture((new PIXI.BaseTexture( this.reader.result))))
 
+            this.imageSprite.scale.set(0.75, 0.75);
             this.imageData.imageString = this.reader.result
 
             this.container.sortableChildren = true
