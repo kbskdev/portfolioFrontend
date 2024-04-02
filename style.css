@@ -60,8 +60,7 @@ body{
         opacity:100%
     }
     99%{
-        bottom: 10vh;
-        right: 8vw;
+
     }
     100%{
 
@@ -92,12 +91,13 @@ a{
     /*background-color: #d1d3e7;*/
     background-size: 400% 100%;
     animation: animateBg 6s  linear infinite;
-    /*background-image: linear-gradient(90deg, #181818, #880d0d, #181818, #880d0d);*/
-    background-image: linear-gradient(90deg, #410001, #00062d, #410001, #00062d);
+    background-image: linear-gradient(90deg, #e66465, #9198e5, #e66465, #9198e5);
+    /*background-image: linear-gradient(90deg, #410001, #00062d, #410001, #00062d);*/
     text-align: center;
 }
 
 .ball{
+
     z-index: 1;
     font-family: "Rubik", sans-serif;
     font-weight: 500;
@@ -106,7 +106,7 @@ a{
     transition: width 1s, height 1s, background-color 1s, font-size 1s, border 0.2s, transform 0.2s, box-shadow 0.2s;
 
     color: #192734;
-    background-color: #dadada;
+    background-color: #e5e5ea;
 
     box-sizing: border-box;
     border-radius: 50%;
@@ -124,9 +124,9 @@ a{
     user-select: none;
     touch-action: none;
 
-    -webkit-box-shadow: 0px 0px 19px -5px rgb(255, 255, 255);
-    -moz-box-shadow: 0px 0px 19px -5px rgb(255, 255, 255);
-    box-shadow: 0px 0px 19px -5px rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 0px 19px -5px #e5e5ea;
+    -moz-box-shadow: 0px 0px 19px -5px #e5e5ea;
+    box-shadow: 0px 0px 19px -5px #e5e5ea;
 }
 .ball:hover{
     cursor:pointer;
@@ -135,9 +135,9 @@ a{
     /*background-image: linear-gradient(148deg, goldenrod, crimson, goldenrod, crimson);*/
     /*animation: animateBg .5s linear infinite;*/
 
-    -webkit-box-shadow: 0px 0px 30px -5px rgb(255, 255, 255);
-    -moz-box-shadow: 0px 0px 30px -5px rgb(255, 255, 255);
-    box-shadow: 0px 0px 30px -5px rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 0px 30px -5px #e5e5ea;
+    -moz-box-shadow: 0px 0px 30px -5px #e5e5ea;
+    box-shadow: 0px 0px 30px -5px #e5e5ea;
 }
 
 
@@ -145,7 +145,7 @@ a{
 
     position: absolute;
 
-    bottom: 10vh;
+    bottom: 12vh;
     right: 8vw;
     font-size: 7.5vw;
     z-index: 10;

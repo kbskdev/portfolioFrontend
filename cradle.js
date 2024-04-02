@@ -40,7 +40,7 @@ function init(){
         const myMouseConstraint = Matter.MouseConstraint.create(myEngine, {
             mouse: myMouse,
             constraint: {
-                stiffness: 0.002,
+                stiffness: 0.005,
                 render: {
                     visible: false
                 }
@@ -54,7 +54,7 @@ function init(){
 
     class Ball extends baseBall{
         constructor(radius, position, positionNormal, selector,first = false, category, mask) {
-            super(radius, position, positionNormal, selector,first = false, category, mask);
+            super(radius, position, positionNormal, selector,first , category, mask);
 
             this.elem.addEventListener("pointerdown", event=>{
                 balls.forEach( (ball)=>{
@@ -100,12 +100,18 @@ function init(){
         myEngine.collisionActive = false
         constraints.forEach( constraint => {
             const shortening = setInterval(()=>{
-                if(constraint.constr.length > Math.max(window.innerHeight*0.15,120)){
+                if(constraint.constr.length > Math.max(window.innerHeight*0.15,window.innerWidth>550?120:220)){
                     constraint.constr.length-=2;
-                }else{ clearInterval(shortening) }
+                }else{
+                    clearInterval(shortening)
+                    mainName.style.color = " #192734"
+                    mainName.style.textShadow = "none"
+                }
                 }, 10,)
 
-
+            if(window.innerWidth<550){
+                mainName.style.visibility = "hidden"
+            }
         setTimeout(() => {
             pinBoardContainer.style.visibility = "visible"
             pinBoardContainer.style.left = "8vw"
@@ -114,16 +120,20 @@ function init(){
             pinBoardArticle.style.visibility = "visible"
             pinBoardArticle.style.opacity = 1
 
-            if(window.innerWidth>600){
+            if(window.innerWidth>550){
                 Matter.Body.scale(constraint.ball.body, 0.66, 0.66)
                 constraint.ball.radius = constraint.ball.radius*0.66
                 constraint.ball.elem.style.height = `${constraint.ball.radius*2}px`
                 constraint.ball.elem.style.width = `${constraint.ball.radius*2}px`
                 constraint.ball.elem.style.fontSize = "16px"
             }
+
         }, 1500)
             mainName.style.right = "2vw"
-            mainName.style.bottom = "2vh"
+            mainName.style.bottom = "6vh"
+            mainName.style.fontSize = "5vw"
+
+
             short = true
         })
     }
@@ -267,11 +277,13 @@ function init(){
     },100)
     })
 
+    window.addEventListener("deviceorientation", (event)=>{mainName.textContent= event.alpha;console.log(event.alpha)}, true);
     //limitMaxSpeed
     const limitMaxSpeed = () => {
         let maxSpeed = 18;
         let maxPositionImpulse = 20
         balls.forEach( (ball)=>{
+
             ball.limitMaxSpeed(maxSpeed,maxPositionImpulse)
         })
     }

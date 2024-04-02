@@ -6,6 +6,11 @@ import {ImageTile} from "./imageTile.js";
  const canvas = document.getElementById('pb_canvas')
 
 function init(){
+     if(window.innerWidth<750){
+         document.getElementById('pb_articleWall').setAttribute('data', "articleWallMobile.svg");
+     }
+
+
 
     fetch("http://pinboard.pl/api/v1/publicImages/getOneComp/65ee50961d3e2b1e8fbd717e/65ee50a51d3e2b1e8fbd7184").then((response) => {
         return response.json();
@@ -34,6 +39,9 @@ function init(){
         backgroundAlpha: 0
     })
     canvas.appendChild(app.view);
+    if(window.innerWidth<900) {
+        mainContainer.scale.set(0.35)
+    }else {mainContainer.scale.set(0.7)}
     app.stage.addChild(mainContainer)
 
     canvas.addEventListener('pointerdown' , (e) =>{
