@@ -6,9 +6,7 @@ import {ImageTile} from "./imageTile.js";
  const canvas = document.getElementById('pb_canvas')
 
 function init(){
-     if(window.innerWidth<750){
-         document.getElementById('pb_articleWall').setAttribute('data', "articleWallMobile.svg");
-     }
+
 
 
 
@@ -38,6 +36,7 @@ function init(){
         antialias: true,
         backgroundAlpha: 0
     })
+    console.log(canvas.offsetWidth)
     canvas.appendChild(app.view);
     if(window.innerWidth<900) {
         mainContainer.scale.set(0.35)

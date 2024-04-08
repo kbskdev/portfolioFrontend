@@ -1,0 +1,89 @@
+#ir_articleHeader{
+    display: none;
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: calc(1.6vh + 1.6vw);
+}
+#ir_articleText{
+    display: none;
+}
+#ir_container{
+    display: none;
+    position: absolute;
+    left: 0!important;
+    bottom: 0;
+    height: 90vh;
+    width: calc(100vw - var(--bigArticleWidth));
+    z-index: 11;
+}
+#ir_container > img{
+    position: absolute;
+}
+.castle{
+    width: 22vw;
+    height: auto;
+    bottom: 15vh;
+    left: 5vw;
+    rotate: -20deg;
+    z-index: 15;
+    animation: introGroup 1.3s ease-out;
+}
+.group{
+    width: 17vw;
+    height: auto;
+    top: 2vh;
+    left: 14vw;
+    rotate: 12deg;
+    z-index: 14;
+
+    animation: introGroup 1s ease-out;
+}
+.coast{
+    width: 19vw;
+    height: auto;
+    top: 25vh;
+    right: 10vw;
+    rotate: 15deg;
+    z-index: 14;
+    animation: introGroup 1.3s ease-out;
+}
+.yit{
+    width: 13vw;
+    height: auto;
+    top: 47vh;
+    left: 27vw;
+    rotate: 25deg;
+    z-index: 13;
+    animation: introGroup 0.9s ease-out;
+}
+.kod{
+    width: 20vw;
+    height: auto;
+    top: 10vh;
+    left: 30vw;
+    rotate: -7deg;
+    animation: introGroup 1.6s ease-out;
+}
+.photo{
+ transition-duration: .3s;
+}
+.photo:hover{
+    z-index: 16!important;
+
+}
+@keyframes introGroup {
+    0%{
+        top:-100vh;
+        rotate: 300deg;
+    }
+    100%{
+
+    }
+
+}

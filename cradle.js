@@ -15,20 +15,35 @@ function init(){
     const worldCategory = 0b10000;
 
     const loadDemo = new Event("loadDemo",{page:"demo"})
+    const loadIrlandia = new Event("loadIrlandia",{page:"irlandia"})
+    const loadFakturownia = new Event("loadFakturownia",{page:"fakturownia"})
 
-    const container = document.getElementById("container")
 
-    const pinBoardContainer = document.getElementById("pb_container")
-    const pinBoardHeader = document.getElementById("pb_header")
-    const pinBoardCanvas = document.getElementById("pb_canvas")
-    const pinBoardArticle = document.getElementById("pb_article")
+    /*htmlElements*/
 
-    const mainName = document.getElementById("name")
-    const intro = document.getElementById("initialAnimation")
+        const container = document.getElementById("container")
+
+        const pinBoardContainer = document.getElementById("pb_container")
+        const pinArticleBoardHeader = document.getElementById("pb_articleHeader")
+        const pinArticleBoardText = document.getElementById("pb_articleText")
+
+        const irelandContainer = document.getElementById("ir_container")
+        const irelandArticleHeader = document.getElementById("ir_articleHeader")
+        const irelandArticleText = document.getElementById("ir_articleText")
+
+        const fakt_Container = document.getElementById("fakt_container")
+        const fakt_ArticleHeader = document.getElementById("fakturownia_articleHeader")
+        const fakt_ArticleText = document.getElementById("fakturownia_articleText")
+
+        const Article = document.getElementById("article")
+
+        const mainName = document.getElementById("name")
+        const intro = document.getElementById("initialAnimation")
+
 
     setTimeout(()=>{
         intro.remove()
-    },6000)
+    },5000)
 
 
     const myEngine = Matter.Engine.create({})//positionIterations:2,velocityIterations:2,constraintIterations:2
@@ -48,9 +63,9 @@ function init(){
             collisionFilter:{category:worldCategory}
         });
     Matter.Composite.add(myEngine.world, myMouseConstraint)}
-    const ceiling = Matter.Bodies.rectangle(0,-40, window.innerWidth*2,80,{isStatic:true, collisionFilter:{mask:firstBallCategory | secondBallCategory | thirdBallCategory | fourthBallCategory, category:worldCategory}})
-    const leftWall = Matter.Bodies.rectangle(-80,0, 160,window.innerHeight,{isStatic:true, collisionFilter:{mask:firstBallCategory | secondBallCategory | thirdBallCategory | fourthBallCategory, category:worldCategory}})
-    const rightWall = Matter.Bodies.rectangle(window.innerWidth+80,0, 160,window.innerHeight,{isStatic:true, collisionFilter:{mask:firstBallCategory | secondBallCategory | thirdBallCategory | fourthBallCategory, category:worldCategory}})
+    const ceiling = Matter.Bodies.rectangle(0,-42, window.innerWidth*2,80,{isStatic:true, collisionFilter:{mask:firstBallCategory | secondBallCategory | thirdBallCategory | fourthBallCategory, category:worldCategory}})
+    const leftWall = Matter.Bodies.rectangle(-81,0, 160,window.innerHeight,{isStatic:true, collisionFilter:{mask:firstBallCategory | secondBallCategory | thirdBallCategory | fourthBallCategory, category:worldCategory}})
+    const rightWall = Matter.Bodies.rectangle(window.innerWidth+81,0, 160,window.innerHeight,{isStatic:true, collisionFilter:{mask:firstBallCategory | secondBallCategory | thirdBallCategory | fourthBallCategory, category:worldCategory}})
 
     class Ball extends baseBall{
         constructor(radius, position, positionNormal, selector,first = false, category, mask) {
@@ -64,7 +79,7 @@ function init(){
                 ballCaught = {caught: true,number: this.positionNormal}
             })
             this.elem.addEventListener("pointerup", event=>{
-                if(!this.moved && !short){shorten()}
+                if(!this.moved && !short){shorten(selector)}
                 else if(!this.moved && short){lengthen()}
                 this.movement = 0;
                 this.moved = false
@@ -95,75 +110,34 @@ function init(){
         }, 1000)
     })
 
-    function shorten() {
-        window.dispatchEvent(loadDemo)
+    function shorten(selector) {
+
+        showPages(selector)
+
         myEngine.collisionActive = false
         constraints.forEach( constraint => {
-            const shortening = setInterval(()=>{
-                if(constraint.constr.length > Math.max(window.innerHeight*0.15,window.innerWidth>550?120:220)){
-                    constraint.constr.length-=2;
-                }else{
-                    clearInterval(shortening)
-                    mainName.style.color = " #192734"
-                    mainName.style.textShadow = "none"
-                }
-                }, 10,)
-
-            if(window.innerWidth<550){
-                mainName.style.visibility = "hidden"
-            }
-        setTimeout(() => {
-            pinBoardContainer.style.visibility = "visible"
-            pinBoardContainer.style.left = "8vw"
-
-
-            pinBoardArticle.style.visibility = "visible"
-            pinBoardArticle.style.opacity = 1
-
             if(window.innerWidth>550){
-                Matter.Body.scale(constraint.ball.body, 0.66, 0.66)
-                constraint.ball.radius = constraint.ball.radius*0.66
-                constraint.ball.elem.style.height = `${constraint.ball.radius*2}px`
-                constraint.ball.elem.style.width = `${constraint.ball.radius*2}px`
-                constraint.ball.elem.style.fontSize = "16px"
+                constraint.shortenLength()
+                constraint.shortenSize(0.5)
+                constraint.shortenPosition()
             }
 
-        }, 1500)
-            mainName.style.right = "2vw"
-            mainName.style.bottom = "6vh"
-            mainName.style.fontSize = "5vw"
-
-
+        setTimeout(() => {
+            Article.style.display = "block"
+            Article.style.opacity = 1
+            mainName.style.backgroundColor = "#272727"
+        }, 1000)
             short = true
         })
     }
     function lengthen(){
-        //window.dispatchEvent(loadDemo)
-
         constraints.forEach(constraint => {
-            const lengthening =setInterval(()=>{
-                if(constraint.constr.length < window.innerHeight*0.6){
-                    constraint.constr.length += 2;
-                }else{ clearInterval(lengthening) }
-                }, 10,)
-            pinBoardHeader.style.left = "-100vw"
+            constraint.lengthenLength()
+            constraint.lengthenSize(2)
+            constraint.lengthenPosition()
+            clearPages()
 
-            pinBoardCanvas.style.visibility = "invisible"
-            pinBoardCanvas.style.left = "-100vw"
 
-            pinBoardArticle.style.visibility = "invisible"
-            pinBoardArticle.style.opacity = "0"
-
-        setTimeout(()=>{
-            if(window.innerWidth>600){
-            Matter.Body.scale(constraint.ball.body,1.5,1.5)
-            constraint.ball.radius = constraint.ball.radius*1.5
-            constraint.ball.elem.style.height = `${constraint.ball.radius*2}px`
-            constraint.ball.elem.style.width = `${constraint.ball.radius*2}px`
-            }
-        },1500)
-        mainName.style.right = "5vw"
-        mainName.style.bottom = "5vh"
         short = false
         })
     }
@@ -276,11 +250,11 @@ function init(){
         }
     },100)
     })
-
-    window.addEventListener("deviceorientation", (event)=>{mainName.textContent= event.alpha;console.log(event.alpha)}, true);
+    //
+    // window.addEventListener("deviceorientation", (event)=>{mainName.textContent= event.alpha;console.log(event.alpha)}, true);
     //limitMaxSpeed
     const limitMaxSpeed = () => {
-        let maxSpeed = 18;
+        let maxSpeed = 25;
         let maxPositionImpulse = 20
         balls.forEach( (ball)=>{
 
@@ -304,10 +278,84 @@ function init(){
         options:{
             width:container.offsetWidth,
             height:container.offsetHeight,
-            backgroundAlpha:0
+            backgroundAlpha:0,
+
         }
 
     })
+    window.addEventListener("resize", (event) => {
+        console.log(rightWall.position.x)
+        myRender.options.width=container.offsetWidth
+        myRender.options.height=container.offsetHeight
+        myRender.canvas.width=container.offsetWidth
+        myRender.canvas.height=container.offsetHeight
+
+
+        Matter.Body.set(rightWall, "position", {x: window.innerWidth+81, y: 0})
+
+        constraints.forEach((constraints) =>{
+
+        })
+    });
+
     Matter.Render.run(myRender)
     Matter.Runner.run(myRunner,myEngine)
+
+
+
+    function showPages(selector){
+        if(selector==="#pinboard"){
+            setTimeout(()=>{
+                pinBoardContainer.style.display = "block"
+                pinBoardContainer.style.left = "8vw"
+
+
+                pinArticleBoardHeader.style.display = "flex"
+                pinArticleBoardText.style.display = "block"
+                window.dispatchEvent(loadDemo)
+            },1500)
+
+
+        }
+        if(selector==="#irlandia"){
+            irelandContainer.style.display = "block"
+            irelandContainer.style.left = "8vw"
+
+            irelandArticleHeader.style.display = "flex"
+            irelandArticleText.style.display = "block"
+
+            window.dispatchEvent(loadIrlandia)
+        }
+
+        if(selector==="#fakturownia"){
+            fakt_Container.style.display = "block"
+
+            fakt_ArticleHeader.style.display = "flex"
+            fakt_ArticleText.style.display = "block"
+
+            window.dispatchEvent(loadFakturownia)
+        }
+    }
+
+    function clearPages(){
+        pinBoardContainer.style.display = "none!important"
+        pinBoardContainer.style.left = "-100vw"
+
+        pinArticleBoardHeader.style.display = "none"
+        pinArticleBoardText.style.display = "none"
+
+
+        irelandContainer.style.display = "none"
+        irelandArticleHeader.style.display = "none"
+        irelandArticleText.style.display = "none"
+
+        fakt_Container.style.display = "none"
+        fakt_ArticleHeader.style.display = "none"
+        fakt_ArticleText.style.display = "none"
+
+        Article.style.display = "none"
+        Article.style.opacity = "0"
+        mainName.style.backgroundColor = "rgba(0,0,0,0)"
+    }
 }
+

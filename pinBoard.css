@@ -2,7 +2,7 @@
     --containerHeight: 75vh;
     --white: #e5e5ea;
     --canvasBackground:#192734;
-    --bigArticleWidth: 24vw;
+    --bigArticleWidth: 30vw;
     --bigArticleHeight: calc(var(--containerHeight) + (100vh - var(--containerHeight)/2));
 
 }
@@ -11,9 +11,9 @@
     bottom: 5vh;
     position: absolute;
     width: 100vw;
-    visibility: hidden;
+    display: none;
     height: 75vh;
-
+    transition-duration: 0.6s;
     left: -100vw;
 }
 #pinboard{
@@ -24,7 +24,7 @@
 #pb_canvas{
     position: absolute;
     bottom: 0;
-    width: 60%;
+    width: 50%;
     height: calc(100% - 65px);
     transition-duration: 2s;
     background-color: #192734;
@@ -37,7 +37,11 @@
     box-shadow: 0px 0px 27px -1px rgba(0, 0, 0, 1);
 }
 
-
+canvas{
+    background-color: rgba(0,0,0,0)!important;
+    height: auto;
+    width: auto;
+}
 
 .headerText{
     color: white;
@@ -69,58 +73,28 @@
     font-size: 62px;
 }
 
-#pb_article{
-    position: absolute;
-    right: 8vw;
-    padding-right: 1.5vw;
-    padding-left: 0vw;
-    width: var(--bigArticleWidth);
-    height: var(--bigArticleHeight);
-    visibility: hidden;
-    opacity: 0;
-    background-color: var(--white);
+#pb_articleHeader{
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: calc(1.6vh + 1.6vw);
 
-    box-sizing: border-box;
-    text-align: left;
-    transition-duration: 1s;
-    color: black;
-    z-index: 5;
-
-    font-family: "Rubik", sans-serif;
-
-    font-style: italic;
-    font-size: calc(1vh + 1vw);
-    line-height: 100%;
+}
+#pb_articleText{
+    display: none;
 }
 
-.solidArticleWall {
-    position: absolute;
-
-    left:0;
-
-    transform: translateX(-100%);
-    height:var(--bigArticleHeight);
-
-    overflow: hidden;
-    line-height: 0;
-    transition-duration: 1s;
-}
 @media screen and (max-width:1200px) and (min-width: 750px){
 
 
 }
 @media screen and (max-width:750px){
-    .solidArticleWall {
-
-        top:2px;
-        right: 200px;
-        left: 0;
-        transform: translatey(-100%);
-
-        width: 100vw;
-        height:15px;
-
-    }
     #pb_container{
         width: 100vw;
         height: 65vh;
@@ -132,16 +106,11 @@
         width: 80%;
         height: 50%;
     }
-    #pb_article{
-        border-radius: 0;
-        bottom: 0vh;
-        height: 30%;
-        width: 100%;
-        z-index: 11;
-        font-size: calc(1.2vh + 1.1vw);
-        padding-right: 2.5vh;
-        padding-left: 2.5vh;
-        padding-bottom:1vh ;
-    }
+
 }
 
+.rubik-mono one-regular {
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
+}

@@ -5,11 +5,22 @@
     <title>Title</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="pinBoard.css">
+    <link rel="stylesheet" href="ireland.css">
+    <link rel="stylesheet" href="fakturownia.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Rubik+Broken+Fax&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Rubik+Broken+Fax&family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5/dist/browser/pixi.min.js"></script>
     <script src="//unpkg.com/matter-js"></script>
     <script type="module" src="cradle.js"></script>
     <script type="module" src="demo.js" ></script>
+    <script type="module" src="fakturownia_slider.js" ></script>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
@@ -24,35 +35,62 @@
 <div id="container" class="container">
     <div class="navShadow"></div>
 
+
+    <div id="article">
+
+        <h3 id="pb_articleHeader" ><a href="http://pinboard.pl">PinBoard</a></h3>
+        <p id="pb_articleText">Oprogramowanie pinBoard pozwala na łatwe tworzenie nieograniczonych tablic na zdjęcia, publikowanie ich, oraz przeglądanie twórczości innych ludzi.
+        Na zaprezentowanym demo możliwe jest tylko przeglądanie zdjęć, w pełnej wersji dostępne dodawanie, edytowanie, oraz opisywanie zdjęć, na dowolnej ilości tablic.
+        <br><br>Dzięki efektywnym algorytmom pinBoard nie obciąża łacza internetowego ani zasobów procesora, co daje możliwość sprawnej implementacji na dowolną stronę internetową.
+        Zależnie od potrzeb jest także możliwość przeprowadzenia odpowiednich modyfikacji, lub integracji z innymi rozwiązaniami.
+        </p>
+
+        <h3 id="ir_articleHeader" >Doświadczenie z Irlandii</h3>
+        <p id="ir_articleText">Nam sit amet purus sagittis, lobortis turpis in, gravida nunc. Vestibulum ante ipsum primis in faucibus orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel justo urna. Phasellus volutpat nunc nisl, ac ullamcorper tortor porta at
+            <br><br> Integer sit amet erat eget ligula malesuada suscipit. Integer accumsan pellentesque molestie. Fusce pulvinar, dolor quis suscipit vulputate, mi risus efficitur urna, vitae porttitor diam lacus nec diam. Cras a tortor viverra, rhoncus ipsum ac, placerat dui. Nullam eu arcu interdum, rutrum magna et, faucibus ante
+        </p>
+
+        <h3 id="fakturownia_articleHeader" >Fakturownia<br>-<br>Produkcja</h3>
+        <p id="fakturownia_articleText">Oprogramowanie Fakturownia-Produkcja to zewnętrzne rozszerzenie do usług oferowanych przez Fakturownie. Pozwala na użycie jej do liczenia stanów magazynowych, pół automatycznej aktualizacji stanów magazynów po procesie produkcji.
+            <br><br>Dla przykładu, firma produkująca miody w jednym “magazynie” może trzymać składniki w postaci miodu, słoików oraz wieczek, a w drugim całe gotowe słoiki do sprzedaży. Zaprezentowane oprogramowanie pozwala automatycznie zaktualizować stan magazynu ze składnikami po przygotowaniu słoików do sprzedaży.Dodatkowo są opcje pozwalające w łatwy sposób organizować faktury </p>
+
+    </div>
     <div id="pb_container">
         <div id="pb_header"><a class="headerText" href="http://pinboard.pl">PinBoard</a></div>
         <div id="pb_canvas" ></div>
+    </div>
 
+    <div id="ir_container">
+        <img class="castle photo" src="irelandPhotos/castle.png">
+        <img class="coast photo " src="irelandPhotos/coast.png">
+        <img class="yit photo " src="irelandPhotos/yit.png">
+        <img class="kod photo " src="irelandPhotos/kod.png">
+        <img class="group photo " src="irelandPhotos/group.png">
+    </div>
 
-        <div id="pb_article">
+    <div id="bigImageContainer">
+        <img id="bigImage">
+        <img src="fakturowniaPhotos/Xymbol.svg" id="cancel">
+    </div>
+    <div id="fakt_container">
 
-            <object id="pb_articleWall" type="image/svg+xml" data="articleWall.svg"  class="solidArticleWall" xmlns="http://www.w3.org/2000/svg" viewBox="-33.1178 0 45.12 879.9">
-<!--                <path id="pb_articleWall" d="M -17.4964 209.2249 c 3.3449 37.758 9.3403 74.3182 17.4964 113.7751 c 13.5198 53.8031 5.4963 109.4917 0.1209 163.0429 C -9.61 536.2808 -22.32 590.2422 -28.7773 641.6647 c -5.7288 45.6026 -8.0879 95.391 7.7773 238.2353 H 12 V 0 H -8.4785 A 390.7367 186.0651 90 0 0 -17.4964 209.2249 Z" fill="#e5e5ea"/>-->
+        <img id="first" class="centerImage smallImage" src="fakturowniaPhotos/slajd1%20logowanie.png">
+        <img id="second"  class="rightImage smallImage" src="fakturowniaPhotos/slajd2%20lista%20produktow.png">
+        <img id="third"  class="rightHiddenImage smallImage" src="fakturowniaPhotos/slajd3%20dodawanie.png">
+        <img id="fourth"  class="rightHiddenImage smallImage" src="fakturowniaPhotos/slajd4%20dodawanie%20receptur.png">
+        <img id="fifth"  class="rightHiddenImage smallImage" src="fakturowniaPhotos/slajd5%20ustawienia.png">
+        <img id="sixth"  class="rightHiddenImage smallImage" src="fakturowniaPhotos/slajd6%20historia.png">
 
-            </object>
-
-
-
-            <h3 ><a href="http://pinboard.pl">PinBoard</a></h3>
-            Oprogramowanie pinBoard pozwala na łatwe tworzenie nieograniczonych tablic na zdjęcia, publikowanie ich, oraz przeglądanie twórczości innych ludzi.
-            Na zaprezentowanym demo możliwe jest tylko przeglądanie zdjęć, w pełnej wersji dostępne dodawanie, edytowanie, oraz opisywanie zdjęć, na dowolnej ilości tablic
-
-        </div>
+        <div class="imageNavigation"><img id="leftArrow" src="fakturowniaPhotos/left_arrow.svg"><img id="rightArrow" src="fakturowniaPhotos/right_arrow.svg"> </div>
     </div>
 
 
+    <div id="pinboard" class="ball"><a>Produkt<br> PinBoard</a></div>
+    <div id="fakturownia" class="ball"><a>Produkt<br> Fakturownia</a></div>
+    <div id="oferta" class="ball"><a>Oferta <br><br> O mnie</a></div>
+    <div id="irlandia" class="ball"><a>Doświadczenia z Irlandii</a></div>
 
-    <div id="pinboard" class="ball"><a>PinBoard</a></div>
-    <div id="fakturownia" class="ball"><a>PinBoard</a></div>
-    <div id="oferta" class="ball"><a>PinBoard</a></div>
-    <div id="irlandia" class="ball"><a>PinBoard</a></div>
-
-    <div id="name" class="name">kbksdev</div>
+    <div id="name" class="name" ><img class="logoSvg" src="logo.svg"></div>
 </div>
 </body>
 </html>

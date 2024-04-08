@@ -24,10 +24,29 @@ export class baseBall{
         this.elem.style.zIndex = -1
         setTimeout(()=>{this.elem.style.zIndex=4},100)
 
-        if(first){this.body = Matter.Bodies.circle(window.innerWidth/2 + 1.5*position*this.radius,-2*this.radius, this.radius,
-            {restitution:1.001,frictionAir:-.03,collisionFilter:{category:category, mask:mask, group:0 }})}
-        else{this.body = Matter.Bodies.circle(window.innerWidth/2 + position*this.radius,-2*this.radius, this.radius,
-            {restitution:1.001,frictionAir:-.03,collisionFilter:{category:category,mask:mask, group:0 }})}
+        if(first){
+            this.body = Matter.Bodies.circle(
+                window.innerWidth/2 + 1.5*position*this.radius,
+                -2*this.radius,
+                this.radius,
+            {
+                restitution:1.001,
+                frictionAir:-.03,
+                collisionFilter:
+                    {category:category, mask:mask, group:0 },
+                render:{visible:false}
+            })}
+        else{this.body = Matter.Bodies.circle(
+            window.innerWidth/2 + position*this.radius,
+            -2*this.radius,
+            this.radius,
+            {
+                restitution:1.001,
+                frictionAir:-.03,
+                collisionFilter:
+                    {category:category,mask:mask, group:0 },
+                render:{visible:false}
+            })}
     }
     render(){
         const {x,y} = this.body.position;
