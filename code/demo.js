@@ -36,7 +36,7 @@ function init(){
         antialias: true,
         backgroundAlpha: 0
     })
-    console.log(canvas.offsetWidth)
+
     canvas.appendChild(app.view);
     if(window.innerWidth<900) {
         mainContainer.scale.set(0.35)
@@ -52,7 +52,7 @@ function init(){
             canvasY: e.clientY - mainContainer.y
         }
 
-        console.log(pressedCanvas)
+
     })
 
     app.renderer.view.onpointermove = (e)=>{

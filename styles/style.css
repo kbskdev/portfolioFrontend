@@ -1,5 +1,3 @@
-
-
 body{
     margin: 0;
     padding: 0;
@@ -13,15 +11,16 @@ body{
 }
 
 #initialAnimation{
-    position: absolute;
-    animation:intro 4s linear 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    animation:introChuj 4s linear ;
     width: 100vw;
     height: 100vh;
-    z-index: 2;
 }
 
 
-@keyframes intro {
+@keyframes introChuj {
     0%{
         background-color: rgba(0, 0, 0,1)
 
@@ -46,7 +45,7 @@ body{
         bottom: 50%;
         transform: translateX(50%) translateY(50%);
     }
-    50%{
+    70%{
         transform: translateX(50%) translateY(50%);
         right: 50%;
         bottom:50%
@@ -92,15 +91,16 @@ a{
     /*background-color: #d1d3e7;*/
     background-size: 400% 100%;
     animation: animateBg 6s  linear infinite;
+    /*background-image: linear-gradient(90deg,#0d6efd, #deb992, #0d6efd, #deb992);*/
     /*background-image: linear-gradient(90deg, #e66465, #9198e5, #e66465, #9198e5);*/
-    background-image: linear-gradient(90deg, #410001, #00062d, #410001, #00062d);
+    background-image: linear-gradient(90deg, #750708, #05105b, #750708, #05105b);
     text-align: center;
 }
 
 #article{
     position: absolute;
     right: 0vw;
-    top: 0;
+    bottom: 0;
     padding-right: 1.5vw;
     padding-left: 1.5vw;
     width: var(--bigArticleWidth);
@@ -122,7 +122,7 @@ a{
     -webkit-box-shadow: -21px 0px 31px -24px rgba(66, 68, 90, 1);
     -moz-box-shadow: -21px 0px 31px -24px rgba(66, 68, 90, 1);
     box-shadow: -21px 0px 31px -24px rgba(66, 68, 90, 1);
-    background-image: url("backgroundArticle.png");
+    background-image: url("../common/backgroundArticle.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -140,7 +140,7 @@ a{
 
     box-sizing: border-box;
     border-radius: 50%;
-    display: flex;
+    display: none;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -151,12 +151,12 @@ a{
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
-    touch-action: none;
+    /*user-select: none;*/
+    /*touch-action: none;*/
 
-    -webkit-box-shadow: 0px 0px 19px -5px #e5e5ea;
-    -moz-box-shadow: 0px 0px 19px -5px #e5e5ea;
-    box-shadow: 0px 0px 19px -5px #e5e5ea;
+    -webkit-box-shadow: 0px 0px 19px -5px #262626;
+    -moz-box-shadow: 0px 0px 19px -5px #262626;
+    box-shadow: 0px 0px 19px -5px #262626;
 }
 .ball:hover{
     cursor:pointer;
@@ -183,7 +183,7 @@ a{
     padding: 5px 0 5px 0;
 
     transition-duration: 1s;
-    animation: introText 1.2s  ease-out 1;
+    animation: introText 1.7s 0.2s  ease-out ;
 
     /*background-color: #272727;*/
     /*pointer-events:none;*/
@@ -191,11 +191,14 @@ a{
     display: flex;
     justify-content: center;
  }
+.name:hover{
+    cursor: pointer;
+}
 .logoSvg{
     width: 15vw;
     height: auto;
 
-    animation: introSvgSize 1.2s  ease-out 1;
+    animation: introSvgSize 1.2s 0.2s ease-out;
 }
 
 
@@ -229,37 +232,91 @@ a{
 }
 
 
-@media screen and (max-width:740px){
-    .ball{
-        font-size: 14px;
-    }
-    .name{
-        width: 100vw;
-        bottom: 6vh;
-        right: 0vw;
-        font-size: 7.5vh;
-    }
-    #article{
-        border-radius: 0;
-        bottom: 0vh;
-        height: 30%;
-        width: 100%;
-        z-index: 11;
-        font-size: calc(1.2vh + 1.1vw);
-        padding-right: 2.5vh;
-        padding-left: 2.5vh;
-        padding-bottom:1vh ;
-    }
-    @keyframes introText {
-        0%{
-            position: absolute;
-            bottom: 50vh;
-            right: 0vw;
-            font-size: 0;
+.shadowShape{
+    transition: width 1s, height 1s, background-color 1s, font-size 1s, border 0.2s, transform 0.2s, box-shadow 0.2s;
+    position: absolute;
+    background-color: rgba(229,229,234,0.05);
+    box-sizing: border-box;
+    border-radius: 50%;
+    overflow: visible;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    display: none;
+}
+
+
+
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 13px;
+    z-index: 1;
+    color: rgba(255,255,255,0.5);
+    padding-bottom: 12px;
+    font-family: "Rubik", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.usługi{
+
+    margin-bottom: 5vh;
+    font-size: 26px;
+
+}
+    @media screen and (max-width:750px){
+        .ball{
+            font-size: 12px;
         }
-        30%{
-            bottom: 42.5vh;
-            /*right: 0vw;*/
+        #fakturownia{
+            font-size: 10px;
+        }
+        #irlandia{
+            font-size: 9px;
+        }
+        .name{
+            width: 100vw;
+            bottom: 0vh;
+            right: 0vw;
+            font-size: 7.5vh;
+            z-index: 12;
+        }
+        #article{
+            border-radius: 0;
+            right: 0;
+            bottom: 0;
+            height: 30vh;
+            width: 100vw;
+            border-top: 4px solid #232323;
+            border-left:none;
+            z-index: 11;
+            font-size: calc(1.2vh + 1.1vw);
+            padding-right: 2.5vh;
+            padding-left: 2.5vh;
+            padding-bottom:5vh ;
+            overflow: scroll;
+        }
+        footer{
+            display: none;
+        }
+        .shadowShape{
+            display: none!important;
+        }
+        @keyframes introText {
+            0%{
+                position: absolute;
+                bottom: 50vh;
+                right: 0vw;
+                font-size: 0;
+            }
+            30%{
+                bottom: 42.5vh;
+                /*right: 0vw;*/
             font-size: 7.50vh;
 
         }
@@ -270,7 +327,7 @@ a{
 
         }
         99%{
-            bottom: 6vh;
+            bottom: 0vh;
             right: 0vw;
         }
         100%{
@@ -279,31 +336,4 @@ a{
     }
 
 }
-@media screen and (max-width:1200px) and (min-width: 550px){
-    @keyframes introText {
-        0%{
 
-            position: absolute;
-            bottom: 50vh;
-            right: 50vw;
-            font-size: 0;
-        }
-        30%{
-
-            bottom: 42.5vh;
-            right: 42.5vw;
-            font-size: 7.50vh;
-
-        }
-        55%{
-            bottom: 42.5vh;
-            right: 42.5vw;
-            font-size: 7.50vh;
-
-        }
-
-        100%{
-
-        }
-    }
-}

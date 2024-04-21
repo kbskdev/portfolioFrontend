@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="pinBoard.css">
-    <link rel="stylesheet" href="ireland.css">
-    <link rel="stylesheet" href="fakturownia.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/pinBoard.css">
+    <link rel="stylesheet" href="styles/ireland.css">
+    <link rel="stylesheet" href="styles/fakturownia.css">
+    <link rel="stylesheet" href="styles/oferta.css">
+    <link rel="stylesheet" href="styles/form.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +20,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/pixi.js@6.5/dist/browser/pixi.min.js"></script>
     <script src="//unpkg.com/matter-js"></script>
-    <script type="module" src="cradle.js"></script>
-    <script type="module" src="demo.js" ></script>
-    <script type="module" src="fakturownia_slider.js" ></script>
+    <script type="module" src="code/cradle.js"></script>
+    <script type="module" src="code/demo.js" ></script>
+    <script type="module" src="code/fakturownia_slider.js" ></script>
+    <script type="module" src="code/offer.js" ></script>
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
@@ -41,24 +44,90 @@
         <h3 id="pb_articleHeader" ><a href="http://pinboard.pl">PinBoard</a></h3>
         <p id="pb_articleText">Oprogramowanie pinBoard pozwala na łatwe tworzenie nieograniczonych tablic na zdjęcia, publikowanie ich, oraz przeglądanie twórczości innych ludzi.
         Na zaprezentowanym demo możliwe jest tylko przeglądanie zdjęć, w pełnej wersji dostępne dodawanie, edytowanie, oraz opisywanie zdjęć, na dowolnej ilości tablic.
-        <br><br>Dzięki efektywnym algorytmom pinBoard nie obciąża łacza internetowego ani zasobów procesora, co daje możliwość sprawnej implementacji na dowolną stronę internetową.
-        Zależnie od potrzeb jest także możliwość przeprowadzenia odpowiednich modyfikacji, lub integracji z innymi rozwiązaniami.
+        <br><br>Dzięki efektywnym algorytmom pinBoard nie obciąża łącza internetowego ani zasobów procesora, co daje możliwość sprawnej implementacji na dowolną stronę internetową.
+        Zależnie od potrzeb jest także możliwość przeprowadzenia odpowiednich modyfikacji lub integracji z innymi rozwiązaniami.
         </p>
 
         <h3 id="ir_articleHeader" >Doświadczenie z Irlandii</h3>
-        <p id="ir_articleText">Nam sit amet purus sagittis, lobortis turpis in, gravida nunc. Vestibulum ante ipsum primis in faucibus orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel justo urna. Phasellus volutpat nunc nisl, ac ullamcorper tortor porta at
-            <br><br> Integer sit amet erat eget ligula malesuada suscipit. Integer accumsan pellentesque molestie. Fusce pulvinar, dolor quis suscipit vulputate, mi risus efficitur urna, vitae porttitor diam lacus nec diam. Cras a tortor viverra, rhoncus ipsum ac, placerat dui. Nullam eu arcu interdum, rutrum magna et, faucibus ante
-        </p>
+        <div id="ir_articleText">Pobyt w Irlandii umożliwił mi pozyskanie cennej wiedzy z zakresu pracy w międzynarodowym środowisku. Podczas mojego stażu miałem okazje udzielać się w anglojęzycznym zespole.
+            <br><br>Projekt, przy którym pracowałem, polegał opracowaniu systemu zarządzania treścią strony internetowej, obejmującego funkcjonalności takie jak publikacja zdjęć czy dodawanie postów.
+        <p class="internshipCompanyLink"> <b>Firma, która wzięła mnie pod swoje skrzydła:</b></p>
+        <div class="internshipPhoto"><a href="https://www.yourinternationaltraining.com/" target=”_blank”><img  src="common/yit.webp"></a></div>
+        </div>
 
         <h3 id="fakturownia_articleHeader" >Fakturownia<br>-<br>Produkcja</h3>
-        <p id="fakturownia_articleText">Oprogramowanie Fakturownia-Produkcja to zewnętrzne rozszerzenie do usług oferowanych przez Fakturownie. Pozwala na użycie jej do liczenia stanów magazynowych, pół automatycznej aktualizacji stanów magazynów po procesie produkcji.
-            <br><br>Dla przykładu, firma produkująca miody w jednym “magazynie” może trzymać składniki w postaci miodu, słoików oraz wieczek, a w drugim całe gotowe słoiki do sprzedaży. Zaprezentowane oprogramowanie pozwala automatycznie zaktualizować stan magazynu ze składnikami po przygotowaniu słoików do sprzedaży.Dodatkowo są opcje pozwalające w łatwy sposób organizować faktury </p>
+        <div id="fakturownia_articleText">Oprogramowanie Fakturownia-Produkcja to zewnętrzne rozszerzenie do usług oferowanych przez Fakturownie.
+            Pozwala na użycie jej do liczenia stanów magazynowych, półautomatycznej aktualizacji stanów magazynów po procesie produkcji.
+            <br><br>Dla przykładu firma produkująca miody w jednym „magazynie” może trzymać składniki w postaci miodu, słoików oraz wieczek, a w drugim całe gotowe słoiki do sprzedaży.
+            Zaprezentowane oprogramowanie pozwala automatycznie zaktualizować stan magazynu ze składnikami po przygotowaniu słoików do sprzedaży.
+            Dodatkowo są opcje pozwalające w łatwy sposób organizować faktury
+            <p class="internshipCompanyLink"> <b>Produktowi zaufali:</b></p>
+            <div class="internshipPhoto"><a href="https://miodywowka.pl/" target=”_blank”><img  src="common/miodywowka.jpg"></a></div>
+        </div>
+
+
+<!--        <h3 id="oferta_omnie_articleHeader" >Kontakt<br></h3>-->
+<!--        <p id="oferta_omnie_articleText">abuzabni-->
+<!--            <br><br> przygogregsedf rgerdsg greg</p>-->
+
+        <h3 id="oferta_aboutme_articleHeader"  >O mnie <br>-<br> Kontakt</h3>
+        <div id="oferta_aboutme_articleText" >
+            Siema, jestem programistą, który może stworzyć dla Ciebie oryginalną stronę internetową, przyciągającą efektywnie klientów, lub napisać oprogramowanie, które usprawni prowadzenie Twojego biznesu.
+            <br><br>W projektach moich stron łączę nowoczesny design z interaktywnymi elementami, od animacji po przydatne dla użytkownika informacje, na przykład interaktywne mapy Google czy systemy rezerwacji usług.
+            <br><br>Potrzebę oprogramowania dla biznesu znam z pierwszej ręki, z doświadczeń ze sklepu internetowego, w którym sam znajdywałem sposoby na usprawnienia, po czym je realizowałem
+            <p class="callMe"><b>Zainteresowany? Zadzwoń!</b><br>+48 789 211 357</p>
+            <p class="callMe"><b>lub napisz maila!</b><br>kbsk.dev@gmail.com</p>
+
+        </div>
+
+        <h3 id="oferta_hosting_articleHeader" class="oferta_article" >Hosting</h3>
+        <p id="oferta_hosting_articleText" class="oferta_article">Wszystkie usługi biorą pod uwagę hosting zrealizowanej aplikacji/strony oraz zarządzenie nim, możliwe jest także hostowanie zewnętrznych produktów
+            <br><br>Strona internetowa <b>50 zł / rok</b>
+            <br>Aplikacja internetowa od <b>100 zł / rok</b>
+        </p>
+
+        <h3 id="oferta_grafika_articleHeader" class="oferta_article" >Grafika, logo</h3>
+        <p id="oferta_grafika_articleText" class="oferta_article">W przypadku, w którym decydujesz się na którąś z ofert, w usłudze wliczone jest projektowanie i realizowanie grafik na potrzeby końcowego produktu<br>
+            Możliwe jest także zamówienie samych grafik, od obróbki zdjęć po zaprojektowanie logo. Płatność po otrzymaniu produktu, bez zaliczki, bez ryzyka tego, że końcowy produkt się nie spodoba
+            <br><br> Ceny od <b>50 zł</b>
+        </p>
+
+        <h3 id="oferta_seo_articleHeader" class="oferta_article" >Pozycjonowanie stron, reklamy</h3>
+        <p id="oferta_seo_articleText" class="oferta_article">
+            W przypadku zapotrzebowania na polepszenie zasięgów strony czy zaczęcia kampanii reklamowej mogę zaoferować analizę SEO, poprawę pozycjonowania
+            lub założenia kampanii reklamowej na takich portalach jak google czy FB. Wspólnie ustalimy budżet oraz cele
+            <br><br>Koszt pozycjonowania lub założenia kampanii reklamowej zaczyna się od <b>100 zł</b>, płatność po zakończonej pracy
+        </p>
+
+        <h3 id="oferta_biznes_articleHeader"class="oferta_article" >Oprogramowanie<br>Dla biznesu</h3>
+        <p id="oferta_biznes_articleText"class="oferta_article">Jeśli nadszedł moment w Twojej firmie na usprawnienia lub automatyzacje pewnych procesów, to oferuję stworzenie dedykowanego do Twoich potrzeb oprogramowania.<br><br>
+            Oprócz zaopiekowania się całym procesem od 0 do skończonego i użytkowego produktu, w którym jedynym wymaganym od Ciebie udziałem jest sprecyzowanie swoich wymagań, pomogę w ustaleniu odpowiednich działań dla Twoich potrzeb<br><br>
+            Jeśli nie jesteś pewien, masz pytania lub wątpliwości, zadzwoń, na pewno się dogadamy
+            <br><b>Koszt ustalany indywidualnie</b>
+        </p>
+
+        <h3 id="oferta_strony_articleHeader"class="oferta_article" >Interaktywne<br>Strony Internetowe</h3>
+        <p id="oferta_strony_articleText"class="oferta_article">Oferowane przeze mnie strony internetowe projektowane są z myślą uzyskania "żywego" efektu, interaktywnego z użytkownikiem.
+            <br><br>Efektem końcowym są strony, które, oprócz nowoczesnego stylu i przekazywania informacji,
+            pozostawiają na odwiedzającym pozytywne wrażenie oraz dają pewność, że prezentowana marka zostanie zapamiętana.
+            <br><br>Wszystkie procesy poboczne, takie jak pozycjonowanie strony w przeglądarce, hosting oraz reklamy są już uwzględnione w ofercie, nie musisz się nimi martwić. Wszystkie potencjalne poprawki czy drobne zmiany przez pierwsze 6 miesęcy są bezpłatne
+            <br><br>Jeśli potrzebujesz strony internetowej lub aktualizacji obecnej, lecz nie jesteś pewny, zadzwoń, na
+            pewno się dogadamy Koszt zaczyna się od <b>300 zł</b> + hosting <b><50 zł/rok</b> bez zaliczki, płatność w momencie, w którym będziesz zadowolony z efektu
+        </p>
+
+
+<!--        <h3 id="oferta_biznes_articleHeader" >Oprogramwoanie<br>-<br>dla biznesu</h3>-->
+<!--        <p id="oferta_biznes_articleText">eoeoeoeoe-->
+<!--            <br><br> aasusauasusauug</p>-->
+
+
 
     </div>
     <div id="pb_container">
         <div id="pb_header"><a class="headerText" href="http://pinboard.pl">PinBoard</a></div>
         <div id="pb_canvas" ></div>
     </div>
+
 
     <div id="ir_container">
         <img class="castle photo" src="irelandPhotos/castle.png">
@@ -84,13 +153,57 @@
         <div class="imageNavigation"><img id="leftArrow" src="fakturowniaPhotos/left_arrow.svg"><img id="rightArrow" src="fakturowniaPhotos/right_arrow.svg"> </div>
     </div>
 
+    <div id="oferta_Container">
+        <div id="pin_oferta_seo" class="pin"></div>
+        <div id="oferta_seo" class="smallBlock"><p>Pozycjonowanie, reklamy, SEO</p><div class="seeMore">Zobacz więcej</div></div>
+
+        <div id="pin_oferta_grafika" class="pin"></div>
+        <div id="oferta_grafika" class="smallBlock"><p>Grafika, loga</p><div class="seeMore">Zobacz więcej</div></div>
+
+        <div id="pin_oferta_hosting" class="pin"></div>
+        <div id="oferta_hosting" class="smallBlock"><p>Hosting</p><div class="seeMore">Zobacz więcej</div></div>
+
+        <div id="pin_oferta_biznes" class="pin"></div>
+        <div id="oferta_biznes" class="bigBlock"><p>Oprogramowanie dla biznesu</p><div class="seeMore">Zobacz więcej</div></div>
+
+        <div id="pin_oferta_strony" class="pin"></div>
+        <div id="oferta_strony" class="bigBlock"><p>Interaktywyne strony internetowe</p><div class="seeMore">Zobacz więcej</div></div>
+
+        <div id="contact">Kontakt</div>
+    </div>
+
 
     <div id="pinboard" class="ball"><a>Produkt<br> PinBoard</a></div>
-    <div id="fakturownia" class="ball"><a>Produkt<br> Fakturownia</a></div>
-    <div id="oferta" class="ball"><a>Oferta <br><br> O mnie</a></div>
-    <div id="irlandia" class="ball"><a>Doświadczenia z Irlandii</a></div>
+    <div id="pinboard_shadowFirst" class="shadowShape shadowFirst"></div>
+    <div id="pinboard_shadowSecond" class="shadowShape shadowSecond"></div>
+    <div id="pinboard_shadowThird" class="shadowShape shadowThird"></div>
+    <div id="pinboard_shadowFourth" class="shadowShape shadowFourth"></div>
 
-    <div id="name" class="name" ><img class="logoSvg" src="logo.svg"></div>
+
+    <div id="fakturownia" class="ball"><a>Produkt<br> Fakturownia</a></div>
+    <div id="fakturownia_shadowFirst" class="shadowShape shadowFirst"></div>
+    <div id="fakturownia_shadowSecond" class="shadowShape shadowSecond"></div>
+    <div id="fakturownia_shadowThird" class="shadowShape shadowThird"></div>
+    <div id="fakturownia_shadowFourth" class="shadowShape shadowFourth"></div>
+
+
+
+    <div id="oferta" class="ball"><a>Oferta <br><br> O mnie</a></div>
+    <div id="oferta_shadowFirst" class="shadowShape shadowFirst"></div>
+    <div id="oferta_shadowSecond" class="shadowShape shadowSecond"></div>
+    <div id="oferta_shadowThird" class="shadowShape shadowThird"></div>
+    <div id="oferta_shadowFourth" class="shadowShape shadowFourth"></div>
+
+
+    <div id="irlandia" class="ball"><a>Doświadczenia z Irlandii</a></div>
+    <div id="irlandia_shadowFirst" class="shadowShape shadowFirst"></div>
+    <div id="irlandia_shadowSecond" class="shadowShape shadowSecond"></div>
+    <div id="irlandia_shadowThird" class="shadowShape shadowThird"></div>
+    <div id="irlandia_shadowFourth" class="shadowShape shadowFourthirlandia"></div>
+
+    <div id="name" class="name" ><img class="logoSvg" src="common/logo.svg"></div>
+
+    <footer><p class="usługi">Usługi programistyczne</p>+48 789 211 357   &nbsp;&nbsp; kbsk.dev@gmail.com</footer>
 </div>
 </body>
 </html>

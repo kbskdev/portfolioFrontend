@@ -87,3 +87,68 @@
     }
 
 }
+.internshipCompanyLink{
+    width: 100%;
+    text-align: center;
+
+}
+.internshipPhoto{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+@media screen and (max-width:750px){
+    #ir_container{
+        width: 100vw;
+        height: 50vh;
+        bottom: 36vh;
+    }
+    .castle{
+        width: auto;
+        height: 24vh;
+        bottom: 15%;
+        left: 5vw;
+        rotate: -20deg;
+        z-index: 15;
+        animation: introGroup 1.3s ease-out;
+    }
+    .group{
+        width: 19vh;
+        height: auto;
+        top: 5vh;
+        left: 5vw;
+        rotate: 14deg;
+        z-index: 12;
+
+        animation: introGroup 1s ease-out;
+    }
+    .coast{
+        width: 21vh;
+        height: auto;
+        top: 25vh;
+        right: 10vw;
+        rotate: 15deg;
+        z-index: 14;
+        animation: introGroup 1.3s ease-out;
+    }
+    .yit{
+        width: 14vh;
+        height: auto;
+        top: 37vh;
+        left: 27vw;
+        rotate: 25deg;
+        z-index: 13;
+        animation: introGroup 0.9s ease-out;
+    }
+    .kod{
+        width: 22vh;
+        height: auto;
+        top: 10vh;
+        left: 40vw;
+        rotate: -7deg;
+        animation: introGroup 1.6s ease-out;
+        z-index: 13;
+    }
+
+
+}

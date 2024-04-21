@@ -12,14 +12,18 @@ function init(){
         constructor(selector){
             this.elem = document.getElementById(selector)
 
-            this.elem.addEventListener("click",()=>{
-                console.log(`${this.elem.src}`)
+            this.elem.addEventListener("pointerup",()=>{
+
                 bigImage.src=`${this.elem.src}`
                 bigImageContainer.style.display="flex"
                 bigImageContainer.style.opacity="1"
                 bigImageBool = true
+                if(window.innerWidth<window.innerHeight){
+                    bigImage.style.rotate = `90deg`
+                    bigImage.style.width = `70vh`
+                }
             })
-            bigImageContainer.addEventListener("click",()=>{
+            bigImageContainer.addEventListener("pointerup",()=>{
                 bigImage.src=``
                 bigImageContainer.style.display="none"
                 bigImageContainer.style.opacity="0"
@@ -39,7 +43,7 @@ function init(){
         new Image("sixth"),
     ]
 
-    leftArrow.addEventListener("click",()=>{
+    leftArrow.addEventListener("pointerdown",()=>{
 
         if(currentMiddle!==0){
             currentMiddle--
@@ -58,7 +62,7 @@ function init(){
         }
 
         })
-    rightArrow.addEventListener("click",()=>{
+    rightArrow.addEventListener("pointerdown",()=>{
 
         if(currentMiddle!==images.length-1) {
             currentMiddle++

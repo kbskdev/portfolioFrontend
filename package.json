@@ -2,7 +2,7 @@
   "name": "portfoliotest",
   "version": "1.0.0",
   "description": "portfolio",
-  "main": "cradle.js",
+  "main": "code/cradle.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
